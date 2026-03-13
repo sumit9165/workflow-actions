@@ -1,0 +1,14 @@
+name: External Deploy Trigger
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [deploy-request]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print environment
+        run: echo "Deploying to -> ${{ github.event.client_payload.environment }}"
