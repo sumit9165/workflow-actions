@@ -1,0 +1,14 @@
+name: Ignore Docs Only Changes
+
+on:
+  push:
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+
+jobs:
+  run-if-not-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "Non-doc changes detected"
