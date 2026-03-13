@@ -46,3 +46,4 @@ jobs:
                 SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-7)
                 VERSION="v1.0-$SHORT_SHA"
                 echo "version=$VERSION" >> $GITHUB_OUTPUT
+                echo "$GITHUB_OUTPUT"
