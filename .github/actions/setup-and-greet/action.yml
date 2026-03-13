@@ -1,0 +1,37 @@
+name: Setup and Greet
+description: Simple greeting composite action
+
+inputs:
+  name:
+    required: true
+    description: Name of the user
+  language:
+    required: false
+    default: en
+    description: Greeting language
+
+outputs:
+  greeted:
+    description: Whether greeting was executed
+    value: ${{ steps.greet.outputs.done }}
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Greeting
+      id: greet
+      shell: bash
+      run: |
+        if [ "${{ inputs.language }}" = "es" ]; then
+          echo "Hola ${{ inputs.name }}"
+        elif [ "${{ inputs.language }}" = "fr" ]; then
+          echo "Bonjour ${{ inputs.name }}"
+        else
+          echo "Hello ${{ inputs.name }}"
+        fi
+
+        echo "Date: $(date)"
+        echo "Runner OS: $RUNNER_OS"
+
+        echo "done=true" >> $GITHUB_OUTPUT
